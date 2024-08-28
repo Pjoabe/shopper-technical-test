@@ -1,24 +1,26 @@
 module.exports = {
   "development": {
-    "username": "root",
-    "password": "rootpassword",
-    "database": "database_development",
-    "host": "db",
+    "username": "shopper_user",
+    "password": "shopper_password",
+    "database": "shopper_db",
+    "host": "shopper_db", // Nome do serviço do banco de dados no Docker Compose
     "dialect": "mysql",
-    "port": 3306,
+    "port": 3306
   },
   "test": {
-    "username": "root",
-    "password": "password",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "shopper_user",
+    "password": "shopper_password",
+    "database": "shopper_db_test", // Use um nome diferente para o banco de dados de teste, se necessário
+    "host": "shopper_db", // Nome do serviço do banco de dados no Docker Compose
+    "dialect": "mysql",
+    "port": 3306
   },
   "production": {
-    "username": "root",
-    "password": "password",
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "shopper_user",
+    "password": "shopper_password",
+    "database": "shopper_db_production", // Use um nome diferente para o banco de dados de produção, se necessário
+    "host": "shopper_db", // Nome do serviço do banco de dados no Docker Compose
+    "dialect": "mysql",
+    "port": 3306
   }
 }

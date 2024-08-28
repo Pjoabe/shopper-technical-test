@@ -16,10 +16,19 @@ services:
     user: node
     depends_on:
       - db
-  db:
+  shopper_db:
     image: mysql:8.0
-    container_name: mysql
+    container_name: shopper_mysql
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: shopper_db
+      MYSQL_USER: shopper_user
+      MYSQL_PASSWORD: shopper_password
     ports:
       - "3307:3306"
+    volumes:
+      - shopper_db_data:/var/lib/mysql
+    restart: unless-stopped
+
+volumes:
+  shopper_db_data:
