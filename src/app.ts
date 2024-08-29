@@ -1,12 +1,13 @@
-import express, { Application } from 'express';
+import express from "express";
+import uploadRouter from "./routes/uploadRoute";
+import confirmRouter from "./routes/confirmRoute";
+import listRouter from "./routes/listRoute";
 
-const app: Application = express();
+const app = express();
 
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
-// Exemplo: app.use('/api', yourRouter);
+app.use(express.json({ limit: "50mb" }));
+app.use(uploadRouter);
+app.use(confirmRouter);
+app.use(listRouter);
 
 export default app;

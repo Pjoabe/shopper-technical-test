@@ -8,14 +8,14 @@ services:
     restart: always
     volumes:
       - .:/usr/src/app
-    environment:
-      - NODE_ENV=development
+    env_file:
+      - .env
     command: bash
     tty: true
     stdin_open: true
     user: node
     depends_on:
-      - db
+      - shopper_db
   shopper_db:
     image: mysql:8.0
     container_name: shopper_mysql
