@@ -41,6 +41,16 @@ export const uploadController = {
         throw new Error("INVALID_TYPE");
       }
 
+      const validMeasureTypes = ["WATER", "GAS"];
+      if (!validMeasureTypes.includes(measure_type)) {
+        return res.status(400).json({
+          error_code: "INVALID_DATA",
+          error_description: `Invalid measure_type provided. Must be one of: ${validMeasureTypes.join(
+            ", "
+          )}`,
+        });
+      }
+
       const date = new Date(measure_datetime);
       if (isNaN(date.getTime())) {
         throw new Error("INVALID_TYPE");
@@ -65,8 +75,15 @@ export const uploadController = {
 
       if (error.message === "INVALID_TYPE") {
         return res.status(400).json({
-          error_code: "INTERNAL_SERVER_ERROR",
+          error_code: "INVALID_DATA",
           error_description: "Invalid data type provided in request body",
+        });
+      }
+
+      if (error.message.includes("Data truncated for column")) {
+        return res.status(400).json({
+          error_code: "INVALID_DATA",
+          error_description: "Invalid value provided for measure_type",
         });
       }
 

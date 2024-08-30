@@ -10,7 +10,9 @@ services:
       - .:/usr/src/app
     env_file:
       - .env
-    command: bash
+    command: >
+      bash -c "npm install &&
+               npm run dev"
     tty: true
     stdin_open: true
     user: node
