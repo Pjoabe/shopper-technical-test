@@ -41,6 +41,15 @@ export const uploadController = {
         throw new Error("INVALID_TYPE");
       }
 
+      const base64Regex = /^(data:image\/[a-zA-Z]+;base64,)?([A-Za-z0-9+/=]+)$/;
+      
+      if (!base64Regex.test(image)) {
+        return res.status(400).json({
+          error_code: "INVALID_DATA",
+          error_description: "Invalid image format. Must be a valid Base64 string.",
+        });
+      }
+
       const validMeasureTypes = ["WATER", "GAS"];
       if (!validMeasureTypes.includes(measure_type)) {
         return res.status(400).json({
